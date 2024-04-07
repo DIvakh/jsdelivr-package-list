@@ -76,7 +76,11 @@ export const useStore = defineStore({
     },
     updateQuery(query: string): void {
       this.query = query;
-      this.searchPackages(query);
+      if (query.length >= 2) {
+        this.searchPackages(query);
+      } else {
+        this.resetSearchResults();
+      }
     },
 
     resetSearchResults() {

@@ -15,7 +15,8 @@
           </span>
         </div>
       </div>
-      <div class="modal-entrypoints">
+      <div class="modal-entrypoints" v-if="currentEntryPointsExist">
+        <p class="modal-entrypoins__title">Entrypoints:</p>
         <div
           v-for="(entryPoint, key) in links"
           :key="key"
@@ -68,6 +69,9 @@ export default defineComponent({
     },
     entryPoints() {
       return useStore().getCurrentEntryPoints.entrypoints;
+    },
+    currentEntryPointsExist(): boolean {
+      return Object.keys(this.links).length > 0;
     }
   },
 

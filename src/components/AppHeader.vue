@@ -25,12 +25,7 @@ export default defineComponent({
     const isSearchQueryTooShort: Ref<boolean> = ref(false);
 
     const debouncedSearchQuery = debounce((): void => {
-      isSearchQueryTooShort.value = searchQuery.value.length < 2;
-      if (!isSearchQueryTooShort.value) {
-        store.updateQuery(searchQuery.value);
-      } else {
-        store.resetSearchResults();
-      }
+      store.updateQuery(searchQuery.value);
     }, 300);
 
     onMounted(() => {

@@ -24,19 +24,17 @@ export default defineComponent({
     updateSearchParams(newSearchParams: SearchParams): void {
       const urlSearchParams = new URLSearchParams();
 
-      urlSearchParams.set('query', newSearchParams.query);
-      urlSearchParams.set('page', newSearchParams.pagination.toString());
+      if (newSearchParams.query.length >= 2) {
+        urlSearchParams.set('query', newSearchParams.query);
+        urlSearchParams.set('page', newSearchParams.pagination.toString());
 
-      if (newSearchParams.isShowModal) {
-        urlSearchParams.set('modal', newSearchParams.isShowModal.toString());
-      }
+        if (newSearchParams.isShowModal) {
+          urlSearchParams.set('modal', newSearchParams.isShowModal.toString());
+        }
 
-      if (newSearchParams.currentPackageName) {
-        urlSearchParams.set('package', newSearchParams.currentPackageName);
-      }
-
-      if (!newSearchParams.isShowModal) {
-        urlSearchParams.delete('package');
+        if (newSearchParams.currentPackageName) {
+          urlSearchParams.set('package', newSearchParams.currentPackageName);
+        }
       }
 
       const queryString = urlSearchParams.toString();
