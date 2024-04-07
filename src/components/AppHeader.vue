@@ -3,50 +3,39 @@
     class="form-control"
     placeholder="Search npm (min. 2 symbols length)"
     type="text"
-    @input="debounceChangeQuery"
+    v-model="searchQuery"
+    @input="debouncedSearchQuery"
   />
-  <div v-if="showErrorMessage" class="error-message">
-    Search query is to short
+  <div v-if="isSearchQueryTooShort" class="error-message">
+    Search query is too short
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { debounce } from '../utils/debounce';
+import { defineComponent, ref } from 'vue';
+import { useStore } from '../store/index';
+import { debounce } from 'lodash';
 
 export default defineComponent({
-  data() {
-    return {
-      showErrorMessage: false
-    };
-  },
-  props: {
-    query: {
-      type: String,
-      required: true
-    }
-  },
-  mounted() {
-    this.debounceChangeQuery = debounce((event: InputEvent) => {
-      const value = (event.target as HTMLInputElement).value;
-      this.changeQuery(value);
-    }, 1000);
-  },
-  methods: {
-    debounceChangeQuery(event: InputEvent): void {
-      this.debounceChangeQuery(event);
-    },
-    changeQuery(value: string): void {
-      if (value.length > 2) {
-        this.showErrorMessage = false;
-        this.$emit('changeQuery', value);
+  setup() {
+    const searchQuery = ref('');
+    const store = useStore();
+    const isSearchQueryTooShort = ref(false);
+
+    const debouncedSearchQuery = debounce(() => {
+      isSearchQueryTooShort.value = searchQuery.value.length < 2;
+      if (!isSearchQueryTooShort.value) {
+        store.updateQuery(searchQuery.value);
       } else {
-        this.showErrorMessage = true;
+        store.resetSearchResults();
       }
-    }
-  },
-  emits: {
-    changeQuery: (value: string) => value.length
+    }, 300);
+
+    return {
+      searchQuery,
+      isSearchQueryTooShort,
+      debouncedSearchQuery
+    };
   }
 });
 </script>

@@ -4,7 +4,39 @@ body {
   font-size: 14px;
   line-height: normal;
 }
-h1 {
-  font-size: 36px;
-  font-weight: 500;
+
+.table-container {
+  padding: 0;
+  height: 100%;
+  .package-table {
+    max-width: 100vw;
+    width: 100%;
+    &__cell {
+      text-align: left;
+    }
+    &__keywords-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      list-style-type: none;
+      margin: 10px 0;
+    }
+    &__keyword {
+      border: 1px solid black;
+      border-radius: 3px;
+      width: max-content;
+      padding: 2px 5px;
+      font-size: 14px;
+    }
+  }
+  .not-found {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 5px;
+    height: 100%;
+    text-align: center;
+    color: rgb(66, 66, 66);
+  }
 }

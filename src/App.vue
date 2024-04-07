@@ -1,30 +1,18 @@
 <template>
-  <AppHeader :query="query" @change-query="changeQuery" />
+  <AppHeader />
+  <AppTable />
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import AppHeader from './components/AppHeader.vue';
-import { useStore } from './store/index';
-const store = useStore();
+import AppTable from './components/AppTable.vue';
 
-interface State {
-  query: string;
-}
 
 export default defineComponent({
-  components: { AppHeader },
-  data(): State {
-    return {
-      query: ''
-    };
-  },
-  methods: {
-    changeQuery(query: string) {
-      this.query = query;
-      console.log(query);
-    }
+  components: { AppHeader, AppTable },
+  data() {
+    return {};
   }
 });
 </script>
-./store
