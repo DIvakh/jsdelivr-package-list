@@ -22,6 +22,19 @@ export async function apiGetPackage(packageName: string) {
     console.error(error);
   }
 }
+export async function apiGetPackageEntryPoints(
+  packageName: string,
+  packageVersion: string
+) {
+  try {
+    const response = await jsdelivrInstance.get(
+      `/packages/npm/${packageName}@${packageVersion}/entrypoints `
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+}
 
 async function apis() {
   console.log(await apiGetSearch({ query: 'vue' }));

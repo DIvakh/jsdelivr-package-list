@@ -14,6 +14,7 @@
             v-for="(item, index) in packages"
             :key="index"
             :item="item.package"
+            @click="openModal(item.package.name)"
           />
         </tbody>
       </table>
@@ -26,6 +27,7 @@
       <AppPagination v-if="packages.length" />
     </div>
     <AppSpinner v-else />
+    <AppModal v-if="store.getIsShowModal" />
   </div>
 </template>
 
@@ -35,15 +37,21 @@ import { useStore } from '../store/index';
 import AppTableItem from './AppTableItem.vue';
 import AppPagination from './AppPagination.vue';
 import AppSpinner from './AppSpinner.vue';
+import AppModal from './AppModal.vue';
 
 export default defineComponent({
-  components: { AppTableItem, AppPagination, AppSpinner },
+  components: { AppTableItem, AppPagination, AppSpinner, AppModal },
   computed: {
     store(): ReturnType<typeof useStore> {
       return useStore();
     },
     packages() {
       return useStore().getPackagesSearchResult;
+    }
+  },
+  methods: {
+    openModal(packageName: string) {
+      this.store.getCurrentPackageInfo(packageName);
     }
   }
 });

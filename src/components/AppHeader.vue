@@ -12,17 +12,19 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref, Ref, onMounted, watch } from 'vue';
 import { useStore } from '../store/index';
 import { debounce } from 'lodash';
 
 export default defineComponent({
   setup() {
-    const searchQuery = ref('');
-    const store = useStore();
-    const isSearchQueryTooShort = ref(false);
+    const searchQuery: Ref<string> = ref('');
+    const store: ReturnType<typeof useStore> = useStore();
+    console.log(store);
 
-    const debouncedSearchQuery = debounce(() => {
+    const isSearchQueryTooShort: Ref<boolean> = ref(false);
+
+    const debouncedSearchQuery = debounce((): void => {
       isSearchQueryTooShort.value = searchQuery.value.length < 2;
       if (!isSearchQueryTooShort.value) {
         store.updateQuery(searchQuery.value);
@@ -30,6 +32,17 @@ export default defineComponent({
         store.resetSearchResults();
       }
     }, 300);
+
+    onMounted(() => {
+      searchQuery.value = store.getSearchQuery;
+    });
+
+    watch(
+      () => store.getSearchQuery,
+      (newValue: string) => {
+        searchQuery.value = newValue;
+      }
+    );
 
     return {
       searchQuery,
