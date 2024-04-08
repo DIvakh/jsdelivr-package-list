@@ -1,14 +1,15 @@
 <template>
-  <input
-    class="form-control"
-    placeholder="Search npm (min. 2 symbols length)"
-    type="text"
-    v-model="searchQuery"
-    @input="debouncedSearchQuery"
-  />
-  <div v-if="isSearchQueryTooShort" class="error-message">
-    Search query is too short
-  </div>
+  <header class="header">
+    <div class="app-input">
+      <input
+        class="form-control"
+        placeholder="Search npm (min. 2 symbols length)"
+        type="text"
+        v-model="searchQuery"
+        @input="debouncedSearchQuery"
+      />
+    </div>
+  </header>
 </template>
 
 <script lang="ts">

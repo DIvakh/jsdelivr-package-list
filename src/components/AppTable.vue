@@ -1,12 +1,12 @@
 <template>
-  <div>
+  <section class="search-results">
     <div class="table-container" v-if="!store.getIsLoading">
       <table v-if="packages.length" class="package-table">
         <thead class="package-table__head">
           <tr class="package-table__row">
-            <th class="package-table__cell">Name</th>
-            <th class="package-table__cell">Description</th>
-            <th class="package-table__cell">Key words</th>
+            <th class="package-table__cell name">Name</th>
+            <th class="package-table__cell version">Version</th>
+            <th class="package-table__cell desc">Description</th>
           </tr>
         </thead>
         <tbody class="package-table__body">
@@ -28,7 +28,7 @@
     </div>
     <AppSpinner v-else />
     <AppModal v-if="store.getIsShowModal" />
-  </div>
+  </section>
 </template>
 
 <script lang="ts">

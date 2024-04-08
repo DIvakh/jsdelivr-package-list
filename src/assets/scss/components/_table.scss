@@ -1,0 +1,98 @@
+.search-results {
+  &:not(:has(> .table-container)) {
+    height: 60vh;
+  }
+  .packageNotFound__title {
+    margin-bottom: 10px;
+    &,
+    & ~ .packageNotFound__description {
+      text-align: center;
+    }
+  }
+  .table-container {
+    .package-table {
+      @media (width < 600px) {
+        font-size: 12px;
+      }
+      table-layout: fixed;
+      width: 100%;
+      .desc,
+      .name {
+        @media (width < 1800px) {
+          word-break: break-all;
+        }
+      }
+      .name {
+        width: 30%;
+      }
+      .version {
+        width: 20%;
+      }
+      .desc {
+        width: 50%;
+      }
+      &__head {
+        text-align: left;
+        .package-table__cell {
+          font-weight: 600;
+          font-size: 1rem;
+          padding-bottom: 0.625rem;
+        }
+      }
+      &__body {
+        tr {
+          transition: background-color 0.2s ease;
+          cursor: pointer;
+
+          &:hover {
+            background-color: #31353a;
+          }
+        }
+        &-td {
+          padding: 5px 3px;
+        }
+      }
+    }
+  }
+
+  .app-pagination {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    * {
+      background-color: transparent;
+      color: $app_white;
+    }
+    option {
+      color: $app_dark;
+    }
+
+    select {
+      width: 40px;
+      padding: 5px 0;
+      border: none;
+
+      &:focus {
+        border: none;
+        border-radius: 3px;
+      }
+    }
+    button {
+      width: 80px;
+      border: 2px solid $app-secondary-color;
+      border-radius: 3px;
+      padding: 10px 0;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+
+      &[disabled] {
+        cursor: initial;
+        backdrop-filter: brightness(85%);
+      }
+    }
+  }
+}

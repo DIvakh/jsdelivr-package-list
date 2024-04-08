@@ -21,21 +21,21 @@
 import { defineComponent } from 'vue';
 export default defineComponent({});
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .spinner-container {
   width: 50px;
   margin: 0 auto;
   margin-bottom: 15px;
-}
-.spinner {
-  width: 50px;
-  animation: spin 2.5s linear infinite;
 
-  &.hidden {
-    visibility: hidden;
+  .spinner {
+    width: 50px;
+    animation: spin 2.5s linear infinite;
+
+    &.hidden {
+      visibility: hidden;
+    }
   }
 }
-
 @keyframes spin {
   0% {
     transform: rotate(0deg);

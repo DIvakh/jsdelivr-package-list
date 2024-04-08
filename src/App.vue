@@ -1,6 +1,9 @@
 <template>
-  <AppHeader />
-  <AppTable />
+  <div class="container">
+    <AppHeader />
+    <AppTable />
+    <AppFooter />
+  </div>
 </template>
 
 <script lang="ts">
@@ -9,9 +12,10 @@ import AppHeader from './components/AppHeader.vue';
 import AppTable from './components/AppTable.vue';
 import { useStore } from './store/index';
 import SearchParams from './types/SearchParams';
+import AppFooter from './components/AppFooter.vue';
 
 export default defineComponent({
-  components: { AppHeader, AppTable },
+  components: { AppHeader, AppTable, AppFooter },
   computed: {
     store() {
       return useStore();

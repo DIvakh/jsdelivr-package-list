@@ -1,8 +1,8 @@
 <template>
   <tr>
-    <td>{{ item?.name }}</td>
-    <td>{{ item?.version }}</td>
-    <td>{{ item?.description }}</td>
+    <td class="package-table__body-td name">{{ item?.name }}</td>
+    <td class="package-table__body-td version">{{ item?.version }}</td>
+    <td class="package-table__body-td desc">{{ item?.description }}</td>
   </tr>
 </template>
 
