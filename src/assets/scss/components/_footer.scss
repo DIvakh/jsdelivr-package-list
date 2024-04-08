@@ -36,8 +36,12 @@
     color: $app_white;
     transition: text-decoration 0.2s ease;
 
-    &:hover {
+    &:not(.name):hover {
       text-decoration: none;
     }
+  }
+  a.name,
+  strong {
+    cursor: default;
   }
 }

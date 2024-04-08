@@ -21,8 +21,8 @@ export const useStore = defineStore({
     isLoading: false,
     query: '',
     isShowModal: false,
-    currentPackage: {},
-    entryPoints: {}
+    currentPackage: null,
+    entryPoints: null
   }),
 
   // Actions:
@@ -35,7 +35,12 @@ export const useStore = defineStore({
       const from = this.pagination === 0 ? 0 : (this.pagination - 1) * size;
 
       try {
-        const response = await apiGetSearch({ text: query, size, from });
+        const response = await apiGetSearch({
+          text: query,
+          size: `${size}`,
+          from: `${from}`
+        });
+
         this.packagesSearchResult = response;
         this.setPagesQuantity();
       } catch (error) {

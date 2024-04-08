@@ -13,7 +13,7 @@
         <div class="info">
           <p v-if="author?.name">
             <strong>Author:</strong>
-            <a :href="author.profileUrl">{{ author.name }}</a>
+            <a class="name" href="javascript:void(0)">{{ author.name }}</a>
           </p>
           <p>
             <strong>GitHub:</strong>
@@ -26,7 +26,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent } from 'vue';
 
 interface Author {
   name: string;

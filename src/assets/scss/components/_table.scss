@@ -64,14 +64,16 @@
       color: $app_white;
     }
     option {
-      color: $app_dark;
+      color: $app_white;
     }
 
     select {
-      width: 40px;
+      width: max-content;
       padding: 5px 0;
       border: none;
       text-align: center;
+      background-color: $app_dark;
+      color: $app_white;
 
       &:focus {
         border: none;

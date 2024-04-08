@@ -1,7 +1,7 @@
 import registryInstance from './api/apiRegistry';
 import jsdelivrInstance from './api/apiJsdelivr';
 
-export async function apiGetSearch(searchParams: Record<string, any>) {
+export async function apiGetSearch(searchParams: Record<string, string>) {
   try {
     const response = await registryInstance.get('/search', {
       params: {
