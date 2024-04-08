@@ -1,23 +1,25 @@
 <template>
   <footer class="footer">
-    <div v-if="isLoading" class="loading">Loading...</div>
-    <div v-else-if="error" class="error">{{ error }}</div>
-    <div v-else-if="author" class="author-info">
-      <img
-        v-if="author?.avatarUrl"
-        :src="author.avatarUrl"
-        alt="Author Avatar"
-        class="avatar"
-      />
-      <div class="info">
-        <p v-if="author?.name">
-          <strong>Author:</strong>
-          <a :href="author.profileUrl">{{ author.name }}</a>
-        </p>
-        <p>
-          <strong>GitHub:</strong>
-          <a :href="author.profileUrl">{{ author.profileUrl }}</a>
-        </p>
+    <div class="container">
+      <div v-if="isLoading" class="loading">Loading...</div>
+      <div v-else-if="error" class="error">{{ error }}</div>
+      <div v-else-if="author" class="author-info">
+        <img
+          v-if="author?.avatarUrl"
+          :src="author.avatarUrl"
+          alt="Author Avatar"
+          class="avatar"
+        />
+        <div class="info">
+          <p v-if="author?.name">
+            <strong>Author:</strong>
+            <a :href="author.profileUrl">{{ author.name }}</a>
+          </p>
+          <p>
+            <strong>GitHub:</strong>
+            <a :href="author.profileUrl">{{ author.profileUrl }}</a>
+          </p>
+        </div>
       </div>
     </div>
   </footer>

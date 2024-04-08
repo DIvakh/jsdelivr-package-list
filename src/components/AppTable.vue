@@ -1,32 +1,34 @@
 <template>
   <section class="search-results">
-    <div class="table-container" v-if="!store.getIsLoading">
-      <table v-if="packages.length" class="package-table">
-        <thead class="package-table__head">
-          <tr class="package-table__row">
-            <th class="package-table__cell name">Name</th>
-            <th class="package-table__cell version">Version</th>
-            <th class="package-table__cell desc">Description</th>
-          </tr>
-        </thead>
-        <tbody class="package-table__body">
-          <AppTableItem
-            v-for="(item, index) in packages"
-            :key="index"
-            :item="item.package"
-            @click="openModal(item.package.name)"
-          />
-        </tbody>
-      </table>
-      <div class="not-found" v-else>
-        <h2 class="packageNotFound__title">Package not found...</h2>
-        <p class="packageNotFound__description">
-          Please, input or change your request in text field
-        </p>
+    <div class="container">
+      <div class="table-container" v-if="!store.getIsLoading">
+        <table v-if="packages.length" class="package-table">
+          <thead class="package-table__head">
+            <tr class="package-table__row">
+              <th class="package-table__cell name">Name</th>
+              <th class="package-table__cell version">Version</th>
+              <th class="package-table__cell desc">Description</th>
+            </tr>
+          </thead>
+          <tbody class="package-table__body">
+            <AppTableItem
+              v-for="(item, index) in packages"
+              :key="index"
+              :item="item.package"
+              @click="openModal(item.package.name)"
+            />
+          </tbody>
+        </table>
+        <div class="not-found" v-else>
+          <h2 class="packageNotFound__title">Package not found...</h2>
+          <p class="packageNotFound__description">
+            Please, input or change your request in text field
+          </p>
+        </div>
+        <AppPagination v-if="packages.length" />
       </div>
-      <AppPagination v-if="packages.length" />
+      <AppSpinner v-else />
     </div>
-    <AppSpinner v-else />
     <AppModal v-if="store.getIsShowModal" />
   </section>
 </template>

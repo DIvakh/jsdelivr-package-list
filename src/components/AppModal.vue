@@ -1,18 +1,20 @@
 <template>
   <div class="modal">
-    <div class="modal-content">
-      <h3 class="modal-name">{{ currentPackage?.name }}</h3>
-      <p class="modal-type">{{ currentPackage?.type }}</p>
-      <div class="modal-tags">
-        <span>Tags:</span>
-        <div class="modal-tags__container">
-          <span
-            v-for="(version, tag) in currentPackage?.tags"
-            :key="tag"
-            @click="getEntry(currentPackage?.name, version)"
-          >
-            {{ tag }}: {{ version }}
-          </span>
+    <div class="modal-wrapper">
+      <div class="modal-content">
+        <h3 class="modal-name">{{ currentPackage?.name }}</h3>
+        <p class="modal-type">Type: {{ currentPackage?.type }}</p>
+        <div class="modal-tags">
+          <span>Tags:</span>
+          <div class="modal-tags__container">
+            <span
+              v-for="(version, tag) in currentPackage?.tags"
+              :key="tag"
+              @click="getEntry(currentPackage?.name, version)"
+            >
+              {{ tag }}: {{ version }}
+            </span>
+          </div>
         </div>
       </div>
       <div class="modal-entrypoints" v-if="currentEntryPointsExist">
@@ -27,7 +29,7 @@
             class="input-group-text"
             style="min-width: 50px"
           >
-            {{ key }}
+            {{ key }}:
           </label>
           <input
             type="text"
@@ -38,6 +40,7 @@
         </div>
       </div>
       <a
+        target="_blank"
         class="modal-links"
         v-for="(link, name) in currentPackage?.links"
         :key="name"
@@ -45,9 +48,8 @@
       >
         {{ name }}
       </a>
+      <button @click="closeModal">Close</button>
     </div>
-
-    <button @click="closeModal">Close</button>
   </div>
 </template>
 <script lang="ts">

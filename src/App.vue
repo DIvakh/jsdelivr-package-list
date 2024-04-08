@@ -1,9 +1,9 @@
 <template>
-  <div class="container">
-    <AppHeader />
+  <AppHeader />
+  <main>
     <AppTable />
-    <AppFooter />
-  </div>
+  </main>
+  <AppFooter />
 </template>
 
 <script lang="ts">

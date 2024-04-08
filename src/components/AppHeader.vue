@@ -1,13 +1,15 @@
 <template>
   <header class="header">
-    <div class="app-input">
-      <input
-        class="form-control"
-        placeholder="Search npm (min. 2 symbols length)"
-        type="text"
-        v-model="searchQuery"
-        @input="debouncedSearchQuery"
-      />
+    <div class="container">
+      <div class="app-input">
+        <input
+          class="form-control"
+          placeholder="Search npm (min. 2 symbols length)"
+          type="text"
+          v-model="searchQuery"
+          @input="debouncedSearchQuery"
+        />
+      </div>
     </div>
   </header>
 </template>
